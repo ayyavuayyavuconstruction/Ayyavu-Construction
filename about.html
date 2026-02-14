@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayyavu Construction</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #1f2937;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    header {
+      width: 100%;
+      padding: 16px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .logo {
+    margin-bottom: -10px;
+    display: flex;
+    justify-content: center;
+    }
+
+    .logo img {
+    width: 28px;       /* adjust size */
+    height: 28px;
+    /* fill: #2563eb;     works if SVG uses currentColor */
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+    }
+
+    nav ul li {
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li:hover {
+      color: #2563eb;
+    }
+
+    .quote-btn {
+      background-color: #2563eb;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quote-btn:hover {
+      background-color: #1e4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+    }
+
+
+    /* ABOUT HERO SECTION */
+    .about-hero {
+    width: 100%;
+    height: 320px;
+    background-image: url("Hero.PNG"); /* update path */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    /* border-radius: 14px; */
+    overflow: hidden;
+    }
+
+    .about-hero-overlay {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(145, 144, 144, 0.55) 0%,
+        rgba(209, 206, 206, 0.25) 60%,
+        rgba(233, 226, 226, 0.05) 100%
+    );
+    display: flex;
+    align-items: center;
+    }
+
+    .about-hero-content {
+    color: #ffffff;
+    max-width: 700px;
+        margin-bottom: -150px;
+        margin-left: 35px;
+    }
+
+    .about-hero-content h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-top: 10px;
+
+    }
+
+    .breadcrumb {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    }
+
+    .breadcrumb a {
+    color: #ffffff;
+    text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+    text-decoration: underline;
+    }
+
+
+    /* ABOUT STORY SECTION */
+    .about-story {
+    padding: 50px 60px;
+    }
+
+    .about-story-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    }
+
+    /* Image */
+    .about-story-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Content */
+    .about-story-content {
+    max-width: 520px;
+    }
+
+    .about-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    color: #2563eb;
+    margin-bottom: 14px;
+    }
+
+    .about-story-content h2 {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 18px;
+    }
+
+    .about-story-content p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #6b7280;
+    margin-bottom: 14px;
+    }
+
+    @media (max-width: 768px) {
+    .about-story-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .about-story-content {
+        max-width: 100%;
+    }
+    }
+
+    /* CORE VALUES SECTION */
+    .core-values {
+    padding: 10px 60px 50px 60px;
+    background: #ffffff;
+    }
+
+    .section-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    }
+
+    .core-values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    }
+
+    .core-value-card {
+    background: #f9fafb;
+    border-radius: 14px;
+    padding: 32px 26px;
+    text-align: center;
+    transition: all 0.3s ease;
+    }
+
+    .core-value-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+    }
+
+    .core-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #eaf1ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563eb;
+    }
+
+    .core-icon svg {
+    width: 26px;
+    height: 26px;
+    }
+
+    .core-value-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    }
+
+    .core-value-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #6b7280;
+    }
+
+    @media (max-width: 992px) {
+    .core-values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    }
+
+    @media (max-width: 576px) {
+    .core-values-grid {
+        grid-template-columns: 1fr;
+    }
+    }
+
+
+    /* MILESTONE SECTION */
+    .milestone {
+    padding: 50px 0;
+    background: #ffffff;
+    }
+
+    .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    }
+
+    /* Vertical line */
+    .timeline::before {
+    content: "";
+    position: absolute;
+    left: 18px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: #e5e7eb;
+    }
+
+    /* Row */
+    .timeline-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    column-gap: 30px;
+    margin-bottom: 48px;
+    position: relative;
+    margin-left: 12px;
+    }
+
+    .timeline-row:last-child {
+    margin-bottom: 0;
+    }
+
+    /* Left column */
+    .timeline-left {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    }
+
+    /* Dot */
+    .timeline-dot {
+    width: 14px;
+    height: 14px;
+    background: #2563eb;
+    border-radius: 50%;
+    margin-top: 4px;
+    }
+
+    /* Year */
+    .timeline-year {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2563eb;
+    }
+
+    /* Right column */
+    .timeline-right h5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    }
+
+    .timeline-right p {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.7;
+    max-width: 520px;
+    }
+    @media (max-width: 576px) {
+    .timeline-row {
+        grid-template-columns: 60px 1fr;
+        column-gap: 20px;
+    }
+
+    .timeline-year {
+        font-size: 14px;
+    }
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+    background: #1f6fe5; /* matches your image */
+    padding: 50px 0;
+    /* border-radius: 18px; */
+    /* margin: 80px 0; */
+    }
+
+    .cta-content {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
+    color: #ffffff;
+    }
+
+    .cta-content h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    }
+
+    .cta-content p {
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0.9;
+    margin-bottom: 32px;
+    }
+
+    /* Buttons */
+    .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    }
+
+    .cta-btn {
+    padding: 12px 26px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    }
+
+    /* Primary button */
+    .cta-btn.primary {
+    background: #ffffff;
+    color: #1f6fe5;
+    }
+
+    .cta-btn.primary:hover {
+    background: #f1f5f9;
+    }
+
+    /* Secondary button */
+    .cta-btn.secondary {
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+    }
+
+    .cta-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+    }
+    @media (max-width: 576px) {
+    .cta-content h2 {
+        font-size: 26px;
+    }
+
+    .cta-content p {
+        font-size: 14px;
+    }
+    }
+
+
+    /* Footer Animation */
+        .footer-section {
+    background: linear-gradient(180deg, #0b1220, #020617);
+    color: #cbd5e1;
+    padding: 70px 80px 30px;
+    }
+
+    .footer-container {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    gap: 60px;
+    margin-bottom: 50px;
+    }
+
+    .footer-logo {
+        margin-bottom: -10px;
+        display: flex;
+        justify-content: center;
+        }
+
+        .logo img {
+        width: 28px;       /* adjust size */
+        height: 28px;
+        /* fill: #2563eb;     works if SVG uses currentColor */
+        }
+
+    .footer-text {
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 18px 0 24px;
+    color: #94a3b8;
+    }
+
+    /* SOCIAL ICONS */
+    .social-links {
+    display: flex;
+    gap: 12px;
+    }
+
+    .social-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #111827;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    }
+
+    .social-icon:hover {
+    background: #2563eb;
+    transform: translateY(-3px);
+    }
+
+    /* FOOTER COLUMNS */
+    .footer-column h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 18px;
+    }
+
+    .footer-column ul {
+    list-style: none;
+    padding: 0;
+    }
+
+    .footer-column li {
+    margin-bottom: 12px;
+    }
+
+    .footer-column a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #94a3b8;
+    transition: color 0.3s ease;
+    }
+
+    .footer-column a:hover {
+    color: #ffffff;
+    }
+
+    /* CONTACT */
+    .footer-column p {
+    font-size: 14px;
+    margin-bottom: 14px;
+    color: #94a3b8;
+    }
+    .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: #94a3b8;
+    margin-bottom: 14px;
+    }
+
+    .contact-item svg {
+    width: 16px;
+    height: 16px;
+    fill: #2563eb;
+    margin-top: 3px;
+    }
+
+
+    /* BOTTOM BAR */
+    .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #64748b;
+    }
+
+    .footer-legal a {
+    margin-left: 18px;
+    text-decoration: none;
+    color: #64748b;
+    transition: color 0.3s ease;
+    }
+
+    .footer-legal a:hover {
+    color: #ffffff;
+    }
+
+    .social-icon
+    {
+        fill: #ffffff; /* Changes the background color */
+    /* stroke: #000;  Changes the outline color */
+    /* width: 100px; */
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="logo">
+      <span><img src="Logo.PNG" alt="Logo"></span>
+      <b>Ayyavu Construction</b>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+
+    <button class="quote-btn" onclick="getQuote()">Get a Quote</button>
+  </header>
+
+<!-- ABOUT HERO SECTION -->
+<section class="about-hero">
+  <div class="about-hero-overlay">
+    <div class="about-hero-content container">
+      <p class="breadcrumb">
+        <a href="index.html">Home</a> &nbsp;›&nbsp; <span>About Us</span>
+      </p>
+
+      <h1>About Ayyavu Construction</h1>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT STORY SECTION -->
+<section class="about-story">
+  <div class="container about-story-wrapper">
+    
+    <!-- Left Image -->
+    <div class="about-story-image">
+      <img src="about-building.png" alt="Ayyavu Construction Building">
+    </div>
+
+    <!-- Right Content -->
+    <div class="about-story-content">
+      <span class="about-tag">ESTABLISHED 2003</span>
+
+      <h2>Crafting Excellence for Over Two Decades</h2>
+
+      <p>
+        Ayyavu Construction began as a visionary family enterprise with a
+        singular goal: to redefine the structural landscape of our nation.
+        Over the last 25 years, we have transitioned from local residential
+        projects to constructing massive commercial landmarks and industrial
+        infrastructures.
+      </p>
+
+      <p>
+        Our mission is to provide high-quality construction services with a
+        focus on integrity and innovation. We believe that every brick laid
+        is a testament to our commitment to durability and aesthetic
+        excellence.
+      </p>
+
+      <p>
+        Today, with over 500 completed projects, our vision remains clear—
+        shaping the future of urban landscapes through sustainable practices
+        and cutting-edge engineering solutions.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CORE VALUES SECTION -->
+<section class="core-values">
+  <div class="container">
+    <h2 class="section-title">Our Core Values</h2>
+
+    <div class="core-values-grid">
+
+      <!-- Card 1 -->
+      <div class="core-value-card">
+        <div class="core-icon">
+          <!-- Integrity SVG -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 3L4 7v5c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V7l-8-4Z"
+              stroke="currentColor" stroke-width="1.8" />
+            <path d="M9 12l2 2 4-4"
+              stroke="currentColor" stroke-width="1.8" />
+          </svg>
+        </div>
+        <h4>Integrity</h4>
+        <p>Honesty and transparency are at the foundation of every client partnership.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="core-value-card">
+        <div class="core-icon">
+          <!-- Innovation SVG -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2a7 7 0 0 0-4 12v3h8v-3a7 7 0 0 0-4-12Z"
+              stroke="currentColor" stroke-width="1.8"/>
+            <path d="M9 21h6"
+              stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <h4>Innovation</h4>
+        <p>We leverage modern technology and smart materials to build better and faster.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="core-value-card">
+        <div class="core-icon">
+          <!-- Quality SVG -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 3l3 6 6 .9-4.5 4.3 1 6-5.5-3-5.5 3 1-6L3 9.9 9 9l3-6Z"
+              stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <h4>Quality</h4>
+        <p>Uncompromising standards in materials and workmanship on every project site.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="core-value-card">
+        <div class="core-icon">
+          <!-- Safety SVG -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 3L5 6v6c0 4.5 3 8.5 7 9.5 4-1 7-5 7-9.5V6l-7-3Z"
+              stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <h4>Safety</h4>
+        <p>Prioritizing the well-being of our workers and the public above all else.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MILESTONE JOURNEY SECTION -->
+<section class="milestone">
+  <div class="container">
+    <h2 class="section-title">Our Milestone Journey</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-row">
+        <div class="timeline-left">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">1998</span>
+        </div>
+        <div class="timeline-right">
+          <h5>The Foundation</h5>
+          <p>
+            Founded by Rajesh Ayyavu in a small office with a team of five
+            passionate engineers.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-row">
+        <div class="timeline-left">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">2005</span>
+        </div>
+        <div class="timeline-right">
+          <h5>Expanding Horizons</h5>
+          <p>
+            Successfully completed our 100th residential complex and expanded
+            into industrial infrastructure.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-row">
+        <div class="timeline-left">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">2012</span>
+        </div>
+        <div class="timeline-right">
+          <h5>National Award for Excellence</h5>
+          <p>
+            Recognized by the National Builders Council for outstanding
+            contribution to urban design.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-row">
+        <div class="timeline-left">
+          <span class="timeline-dot"></span>
+          <span class="timeline-year">2023</span>
+        </div>
+        <div class="timeline-right">
+          <h5>Green Initiative Launch</h5>
+          <p>
+            Committed to 100% net-zero carbon construction for all upcoming
+            commercial projects.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="container cta-content">
+    <h2>Ready to build your next project with us?</h2>
+    <p>
+      Get in touch with our expert team today for a free consultation and
+      customized quote.
+    </p>
+
+    <div class="cta-buttons">
+      <a href="project.html" class="cta-btn primary">Start Your Quote</a>
+      <a href="contact.html" class="cta-btn secondary">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+ <footer class="footer-section">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-brand">
+      <h3 class="logo">
+        <span style="margin-left: -205px;"><img src="Logo.png" alt="Logo"></span> Ayyavu Construction
+      </h3>
+      <p class="footer-text">
+        Leading the industry with high-quality architectural solutions and
+        sustainable building practices since 2003.
+      </p>
+
+      <div class="social-links">
+  <a href="#" class="social-icon" aria-label="Facebook">
+    <svg viewBox="0 0 24 24">
+      <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.6l-.4 3h-2.2v7A10 10 0 0 0 22 12z"/>
+    </svg>
+  </a>
+
+  <a href="#" class="social-icon" aria-label="Twitter">
+    <svg viewBox="0 0 24 24">
+      <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 0 0 1.88-2.38 8.6 8.6 0 0 1-2.72 1.04A4.28 4.28 0 0 0 11.5 9.5a12.14 12.14 0 0 1-8.8-4.46 4.28 4.28 0 0 0 1.33 5.7A4.23 4.23 0 0 1 2 10.2v.05a4.28 4.28 0 0 0 3.44 4.2 4.3 4.3 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.97A8.6 8.6 0 0 1 2 19.5 12.13 12.13 0 0 0 8.29 21c7.55 0 11.68-6.26 11.68-11.68 0-.18 0-.36-.01-.54A8.36 8.36 0 0 0 22.46 6z"/>
+    </svg>
+  </a>
+
+  <a href="#" class="social-icon" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24">
+      <path d="M4.98 3.5a2.48 2.48 0 1 0 0 4.96 2.48 2.48 0 0 0 0-4.96zM3 21h4v-12H3v12zm7 0h4v-6.5c0-3.9 5-4.2 5 0V21h4v-7.7c0-7-8-6.7-9-3.3V9H10v12z"/>
+    </svg>
+  </a>
+</div>
+
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-column">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <!-- <li><a href="projects.html">Projects</a></li> -->
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="footer-column">
+      <h4>Projects</h4>
+      <ul>
+        <li><a href="#">Completed Projects</a></li>
+        <li><a href="#">Ongoing Projects</a></li>
+        <li><a href="#">Upcoming Projects</a></li>
+      </ul>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="footer-column">
+      <h4>Contact Us</h4>
+      <p>📍 No-17, Vidhya Colony 5th cross, Thadagam rd<br />
+                      TVS Nagar, Coimbatore - 641025</p>
+      <p>📞<a href="tel:+91 93604 93616">+91 93604 93616</a></p>
+      <p>📞<a href="tel:+91 93604 93616">+91 93457 70330</a></p>
+      <p>✉️ <a href="mailto:ayyavu.ayyavupromoters@gmail.com">ayyavu.ayyavupromoters@gmail.com </a></p>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bottom">
+    <p>© 2026 Ayyavu Construction. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+
+
+
+  <!-- JAVASCRIPT -->
+  <!-- <script>
+        let currentIndex = 0;
+    const slides = document.querySelectorAll(".testimonial-slide");
+    const dots = document.querySelectorAll(".dot");
+    let autoSlide;
+
+    function updateSlides(index) {
+        slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+        dots[i].classList.toggle("active", i === index);
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlides(currentIndex);
+        resetAutoSlide();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlides(currentIndex);
+        resetAutoSlide();
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateSlides(currentIndex);
+        resetAutoSlide();
+    }
+
+    function startAutoSlide() {
+        autoSlide = setInterval(nextSlide, 5000);
+    }
+
+    function resetAutoSlide() {
+        clearInterval(autoSlide);
+        startAutoSlide();
+    }
+
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") nextSlide();
+        if (e.key === "ArrowLeft") prevSlide();
+    });
+
+    // Swipe support
+    let startX = 0;
+    document.querySelector(".testimonial-container").addEventListener("touchstart", e => {
+        startX = e.touches[0].clientX;
+    });
+
+    document.querySelector(".testimonial-container").addEventListener("touchend", e => {
+        let endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) nextSlide();
+        if (endX - startX > 50) prevSlide();
+    });
+
+    // Init
+    startAutoSlide();
+  </script> -->
+
+</body>
+</html>

@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayyavu Construction</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #1f2937;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    header {
+      width: 100%;
+      padding: 16px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .logo {
+    margin-bottom: -10px;
+    display: flex;
+    justify-content: center;
+    }
+
+    .logo img {
+    width: 28px;       /* adjust size */
+    height: 28px;
+    /* fill: #2563eb;     works if SVG uses currentColor */
+    }
+
+    /*.logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .logo span {
+      color: #2563eb;
+      font-size: 20px;
+    }*/
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+    }
+
+    nav ul li {
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li:hover {
+      color: #2563eb;
+    }
+
+    .quote-btn {
+      background-color: #2563eb;
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quote-btn:hover {
+      background-color: #1e4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+    }
+
+    /* ---------- HERO SECTION ---------- */
+    .hero-wrapper {
+      padding: 40px 60px;
+    }
+
+    .hero {
+      position: relative;
+      height: 460px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: linear-gradient(
+          to right,
+          rgba(15, 23, 42, 0.75),
+          rgba(15, 23, 42, 0.25)
+        ),
+        url("Hero.PNG") center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .hero:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-content {
+      max-width: 520px;
+      padding-left: 60px;
+      color: #ffffff;
+    }
+
+    .hero-content h1 {
+      font-size: 44px;
+      line-height: 1.2;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 16px;
+      line-height: 1.6;
+      opacity: 0.9;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+    }
+
+    .primary-btn {
+      background-color: #2563eb;
+      color: #ffffff;
+      padding: 12px 22px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .primary-btn:hover {
+      background-color: #1e4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.4);
+    }
+
+    .secondary-btn {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      padding: 12px 22px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .secondary-btn:hover {
+      background-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- EXPERTISE SECTION ---------- */
+    .expertise-section {
+    padding: 50px 60px;
+    text-align: center;
+    }
+
+    .expertise-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #2563eb;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    }
+
+    .expertise-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: #111827;
+    }
+
+    .expertise-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    }
+
+    .expertise-card {
+    background-color: #ffffff;
+    border-radius: 14px;
+    padding: 32px 22px;
+    text-align: left;
+    border: 1px solid #e5e7eb;
+    transition: all 0.35s ease;
+    }
+
+    .expertise-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .icon-box {
+    width: 44px;
+    height: 44px;
+    background-color: #eef2ff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 20px;
+    margin-bottom: 18px;
+    }
+
+    .expertise-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #111827;
+    }
+
+    .expertise-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6b7280;
+    }
+
+    /* ---------- ABOUT SECTION ---------- */
+    .about-section {
+    padding: 50px 60px;
+    }
+
+    .about-container {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 80px;
+    align-items: center;
+    }
+
+    /* LEFT IMAGE */
+    .about-image-wrapper {
+    position: relative;
+    }
+
+    .about-image {
+    width: 100%;
+    border-radius: 16px;
+    display: block;
+    }
+
+    .experience-badge {
+    position: absolute;
+    bottom: -24px;
+    right: -24px;
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 22px 26px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 18px 35px rgba(37, 99, 235, 0.35);
+    }
+
+    .experience-badge .years {
+    font-size: 28px;
+    font-weight: 700;
+    display: block;
+    }
+
+    .experience-badge .text {
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: 0.95;
+    }
+
+    /* RIGHT CONTENT */
+    .about-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #2563eb;
+    letter-spacing: 1.4px;
+    margin-bottom: 14px;
+    }
+
+    .about-title {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 22px;
+    color: #111827;
+    }
+
+    .about-description {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #6b7280;
+    margin-bottom: 32px;
+    }
+
+    .about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 32px;
+    }
+
+    .feature h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #111827;
+    }
+
+    .feature p {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.6;
+    }
+
+    .about-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2563eb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    }
+
+    .about-link:hover {
+    color: #1e4ed8;
+    }
+
+    /* ---------- PROJECT SECTION ---------- */
+    .project-section {
+    padding: 50px 60px;
+    }
+
+    .project-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 60px;
+    }
+
+    .project-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #2563eb;
+    letter-spacing: 1.4px;
+    display: inline-block;
+    margin-bottom: 12px;
+    }
+
+    .project-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 14px;
+    }
+
+    .project-subtitle {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #6b7280;
+    }
+
+    /* CARD GRID */
+    .project-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    }
+
+    /* CARD */
+    .project-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 26px 38px -22px rgba(17, 24, 39, 0.28);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 36px 48px -22px rgba(17, 24, 39, 0.35);
+    }
+
+    /* IMAGE */
+    .project-image {
+    height: 200px;
+    border-radius: 14px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 18px;
+    }
+
+    /* IMAGE SOURCES */
+    .project-image.completed {
+    background-image: url("completed.jpg");
+    }
+
+    .project-image.ongoing {
+    background-image: url("ongoing.jpg");
+    }
+
+    .project-image.upcoming {
+    background-image: url("upcoming.jpg");
+    }
+
+    /* STATUS */
+    .project-status {
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    }
+
+    .completed-dot {
+    color: #22c55e;
+    }
+
+    .ongoing-dot {
+    color: #f97316;
+    }
+
+    .upcoming-dot {
+    color: #3b82f6;
+    }
+
+    /* TEXT */
+    .project-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 10px;
+    }
+
+    .project-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6b7280;
+    margin-bottom: 18px;
+    }
+
+    /* LINK */
+    .project-card a {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2563eb;
+    text-decoration: none;
+    }
+
+    .project-card a:hover {
+    color: #1e4ed8;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+    .project-cards {
+        grid-template-columns: 1fr;
+    }
+    } 
+
+    /* Container for contact section */
+
+        .contact-section {
+    padding: 50px 60px;
+    background: #f5f4f4;
+}
+
+    .contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 80px;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 18px 35px rgba(3, 3, 3, 0.35);    
+    overflow: hidden;
+    }
+
+    /* LEFT IMAGE */
+    .contact-image {
+    height: 130%;
+    min-height: 420px;
+    background: url("contact.PNG") center / cover no-repeat;
+    }
+
+    /* RIGHT CONTENT */
+    .contact-content {
+     padding: 30px 100px 30px 50px;
+    }
+    .contact-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #2563eb;
+    letter-spacing: 1.4px;
+    margin-bottom: 14px;
+    display: inline-block;
+    }
+
+    .contact-title {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 22px;
+    color: #111827;
+    }
+
+    .contact-description {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #6b7280;
+    margin-bottom: 32px;
+    }
+
+    /* FORM */
+    .contact-form {
+    display: grid;
+    gap: 18px;
+    }
+
+    .form-group {
+    display: flex;
+    flex-direction: column;
+    }
+
+    .form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #111827;
+    }
+
+    .form-group input,
+    .form-group textarea {
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .form-group textarea {
+    resize: none;
+    min-height: 110px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+
+    /* BUTTON */
+    .contact-btn {
+    margin-top: 10px;
+    padding: 14px 20px;
+    background-color: #2563eb;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .contact-btn:hover {
+    background-color: #1e4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(37,99,235,0.35);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-image {
+        min-height: 260px;
+    }
+    }
+
+    /* portfolio */
+    .portfolio-section {
+  padding: 50px 60px;
+}
+
+/* HEADER */
+.portfolio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.portfolio-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+  letter-spacing: 1.4px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.portfolio-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.portfolio-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.25s ease;
+}
+
+.portfolio-link:hover {
+  border-color: #2563eb;
+}
+
+/* GRID */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* CARD */
+.portfolio-card {
+  height: 260px;
+  border-radius: 18px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 26px 38px -22px rgba(17, 24, 39, 0.28);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 36px 50px -22px rgba(17, 24, 39, 0.35);
+}
+
+/* IMAGE SOURCES */
+.portfolio-card.image-one {
+  background-image: url("portfolio-1.jpg");
+}
+
+.portfolio-card.image-two {
+  background-image: url("portfolio-2.jpg");
+}
+
+.portfolio-card.image-three {
+  background-image: url("portfolio-3.jpg");
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .portfolio-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-card {
+    height: 220px;
+  }
+}
+
+
+/* TESTIMONIAL SLIDER SECTION */
+
+    .testimonial-section {
+    padding: 50px 60px;
+    }
+
+    .testimonial-container {
+    background: #f1f7fd;
+    border-radius: 22px;
+    padding: 60px 80px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 28px 40px -22px rgba(17, 24, 39, 0.25);
+    overflow: hidden;
+    }
+
+    /* QUOTE SVG */
+    .quote-icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    }
+
+    .quote-icon img {
+    width: 48px;       /* adjust size */
+    height: 48px;
+    fill: #2563eb;     /* works if SVG uses currentColor */
+    }
+
+    /* SLIDES */
+    .testimonial-slide {
+    display: none;
+    position: relative;
+    padding: 0 40px;
+    }
+
+    .testimonial-slide.active {
+    display: block;
+    }
+
+    /* TEXT */
+    .testimonial-text {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #111827;
+    margin-bottom: 28px;
+    }
+
+
+    .testimonial-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+    }
+
+    .testimonial-role {
+    font-size: 13px;
+    color: #6b7280;
+    }
+
+    /* ARROWS */
+    .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    font-size: 18px;
+    transition: transform 0.25s ease;
+    }
+
+    .arrow:hover {
+    transform: translateY(-50%) scale(1.1);
+    }
+
+    .arrow.left {
+    left: 20px;
+    }
+
+    .arrow.right {
+    right: 20px;
+    }
+
+    /* DOTS */
+    .testimonial-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+    }
+
+    .dot {
+    width: 8px;
+    height: 8px;
+    background: #c7d2fe;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .dot.active {
+    background: #2563eb;
+    transform: scale(1.3);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+    .testimonial-container {
+        padding: 40px 20px;
+    }
+
+    .arrow {
+        display: none;
+    }
+
+    .testimonial-text {
+        font-size: 17px;
+    }
+    }
+
+
+    /* CTA SECTION */
+    .cta-section {
+    background: #1f6fe5; /* blue background */
+    padding: 50px 60px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .cta-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    }
+
+    /* Text */
+    .cta-text h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    }
+
+    .cta-text p {
+    font-size: 15px;
+    color: #e6efff;
+    }
+
+    /* Button */
+    .cta-btn {
+    background: #ffffff;
+    color: #1f6fe5;
+    padding: 14px 26px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Hover Animation */
+    .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+    .cta-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    }
+
+
+    /* Footer Animation */
+    .footer-section {
+  background: linear-gradient(180deg, #0b1220, #020617);
+  color: #cbd5e1;
+  padding: 70px 80px 30px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 60px;
+  margin-bottom: 50px;
+}
+
+.footer-logo {
+    margin-bottom: -10px;
+    display: flex;
+    justify-content: center;
+    }
+
+    .logo img {
+    width: 28px;       /* adjust size */
+    height: 28px;
+    /* fill: #2563eb;     works if SVG uses currentColor */
+    }
+
+.footer-text {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 18px 0 24px;
+  color: #94a3b8;
+}
+
+/* SOCIAL ICONS */
+.social-links {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #111827;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: #2563eb;
+  transform: translateY(-3px);
+}
+
+/* FOOTER COLUMNS */
+.footer-column h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 18px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column li {
+  margin-bottom: 12px;
+}
+
+.footer-column a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #94a3b8;
+  transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: #ffffff;
+}
+
+/* CONTACT */
+.footer-column p {
+  font-size: 14px;
+  margin-bottom: 14px;
+  color: #94a3b8;
+}
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 14px;
+}
+
+.contact-item svg {
+  width: 16px;
+  height: 16px;
+  fill: #2563eb;
+  margin-top: 3px;
+}
+
+
+/* BOTTOM BAR */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.footer-legal a {
+  margin-left: 18px;
+  text-decoration: none;
+  color: #64748b;
+  transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+  color: #ffffff;
+}
+
+.social-icon
+{
+    fill: #ffffff; /* Changes the background color */
+   /* stroke: #000;  Changes the outline color */
+   /* width: 100px; */
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="logo">
+      <span><img src="Logo.PNG" alt="Logo"></span>
+      <b>Ayyavu Construction</b>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html" style="color: inherit; text-decoration: none; ">Home</a></li>
+        <li><a href="about.html" style="color: inherit; text-decoration: none; ">About Us</a></li>
+        <li><a href="projects.html" style="color: inherit; text-decoration: none; ">Projects</a></li>
+        <li><a href="contact.html" style="color: inherit; text-decoration: none; ">Contact Us</a></li>
+        <li><a href="blog.html" style="color: inherit; text-decoration: none; ">Blog</a></li>
+      </ul>
+    </nav>
+
+    <button class="quote-btn" onclick="getQuote()">Get a Quote</button>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-wrapper">
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Building Trust.<br />Shaping Tomorrow.</h1>
+
+        <p>
+          Expert residential, commercial, and industrial construction services
+          dedicated to quality, precision, and architectural excellence.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="primary-btn">View Projects</button>
+          <button class="secondary-btn"><a href="contact.html" style="color: inherit; text-decoration: none;  ">Contact Us</a></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERTISE SECTION -->
+<section class="expertise-section">
+  <p class="expertise-label">OUR EXPERTISE</p>
+  <h2 class="expertise-title">Comprehensive Solutions</h2>
+
+  <div class="expertise-cards">
+    <div class="expertise-card">
+      <div class="icon-box">🏠</div>
+      <h3>Residential</h3>
+      <p>
+        Custom luxury homes and residential developments built
+        with unmatched attention to detail.
+      </p>
+    </div>
+
+    <div class="expertise-card">
+      <div class="icon-box">🏢</div>
+      <h3>Commercial</h3>
+      <p>
+        Modern office spaces, retail hubs, and scalable business
+        infrastructure for the modern enterprise.
+      </p>
+    </div>
+
+    <div class="expertise-card">
+      <div class="icon-box">🛠️</div>
+      <h3>Renovation</h3>
+      <p>
+        Transforming and modernizing existing structures while
+        preserving core architectural integrity.
+      </p>
+    </div>
+
+    <div class="expertise-card">
+      <div class="icon-box">📋</div>
+      <h3>Management</h3>
+      <p>
+        Full-cycle project oversight from concept to completion,
+        ensuring timelines and budgets are met.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about-section">
+  <div class="about-container">
+
+    <!-- LEFT IMAGE -->
+    <div class="about-image-wrapper">
+      <img src="about.png" alt="Construction Team" class="about-image">
+
+      <div class="experience-badge">
+        <span class="years">20+</span>
+        <span class="text">Years of<br>Excellence</span>
+      </div>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="about-content">
+      <p class="about-label">ABOUT AYYAVU CONSTRUCTION</p>
+
+      <h2 class="about-title">
+        We build structures that<br>
+        stand the test of time.
+      </h2>
+
+      <p class="about-description">
+        With over two decades of industry leadership, Ayyavu Construction
+        has established a reputation for uncompromising quality and integrity.
+        We believe that every project, regardless of scale, deserves precision
+        engineering and sustainable design.
+      </p>
+
+      <div class="about-features">
+        <div class="feature">
+          <h4>Quality Materials</h4>
+          <p>Sourced from top global suppliers for longevity.</p>
+        </div>
+
+        <div class="feature">
+          <h4>Expert Team</h4>
+          <p>Certified architects and master craftsmen.</p>
+        </div>
+      </div>
+
+      <a href="#" class="about-link">
+        Learn More About Our Values →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECT SECTION -->
+    <section class="project-section">
+  <div class="project-header">
+    <span class="project-label">PROJECT PIPELINE</span>
+    <h2 class="project-title">Our Project Journey</h2>
+    <p class="project-subtitle">
+      A transparent look into our active portfolio, showcasing the lifecycle of our
+      commitment to building excellence.
+    </p>
+  </div>
+
+  <div class="project-cards">
+
+    <!-- CARD 1 -->
+    <div class="project-card">
+      <div class="project-image completed"></div>
+      <span class="project-status completed-dot">● COMPLETED</span>
+      <h3>Completed Projects</h3>
+      <p>
+        A curated gallery of our delivered excellence, featuring move-in ready
+        residential and commercial spaces defined by high-end finishes.
+      </p>
+      <a href="#">Explore Finished Work →</a>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="project-card">
+      <div class="project-image ongoing"></div>
+      <span class="project-status ongoing-dot">● ACTIVE CONSTRUCTION</span>
+      <h3>Ongoing Projects</h3>
+      <p>
+        Witness our precision in action. These sites showcase our active machinery,
+        scaffolding, and expert crews turning blueprints into reality.
+      </p>
+      <a href="#">Track Current Progress →</a>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="project-card">
+      <div class="project-image upcoming"></div>
+      <span class="project-status upcoming-dot">● PRE-CONSTRUCTION</span>
+      <h3>Upcoming Projects</h3>
+      <p>
+        The future of our skyline. Discover visionary 3D renders and innovative site
+        plans currently in the final planning and approval phases.
+      </p>
+      <a href="#">View Future Concepts →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+  <div class="contact-container">
+
+    <!-- LEFT IMAGE -->
+    <div class="contact-image"></div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="contact-content">
+      <span class="contact-label">GET IN TOUCH</span>
+
+      <h2 class="contact-title">Let’s Start Your Journey</h2>
+
+      <p class="contact-description">
+        Have a vision in mind? Reach out today for a complimentary consultation.
+        Our experts are ready to discuss your next masterpiece.
+      </p>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" placeholder="John Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="john@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Briefly describe your project goals..." required></textarea>
+        </div>
+
+        <button type="submit" class="contact-btn">Send Message</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- portfolio -->
+ <section class="portfolio-section">
+  <div class="portfolio-header">
+    <div>
+      <span class="portfolio-label">OUR PORTFOLIO</span>
+      <h2 class="portfolio-title">Recent Masterpieces</h2>
+    </div>
+
+    <a href="#" class="portfolio-link">View All Projects</a>
+  </div>
+
+  <div class="portfolio-grid">
+    <div class="portfolio-card image-one"></div>
+    <div class="portfolio-card image-two"></div>
+    <div class="portfolio-card image-three"></div>
+  </div>
+</section>
+
+
+<!-- TESTIMONIAL SLIDER SECTION -->
+
+<section class="testimonial-section">
+  <div class="testimonial-container">
+
+    <div class="quote-icon">
+    <img src="quote.svg" alt="Quote Icon">
+    </div>
+
+    <!-- SLIDES -->
+    <div class="testimonial-slide active">
+      <p class="testimonial-text">
+        Ayyavu Construction transformed our vision into a breathtaking reality.
+        Their attention to structural integrity and aesthetic detail is world-class.
+        We couldn’t be happier with our new corporate headquarters.
+      </p>
+      <h4 class="testimonial-name">Jonathan Vickers</h4>
+      <span class="testimonial-role">CEO, Global Tech Dynamics</span>
+    </div>
+
+    <div class="testimonial-slide">
+      <p class="testimonial-text">
+        From planning to execution, the professionalism and transparency shown by
+        Ayyavu Construction were exceptional. Our residential project was delivered
+        on time with outstanding quality.
+      </p>
+      <h4 class="testimonial-name">Meera Raghavan</h4>
+      <span class="testimonial-role">Homeowner, Coimbatore</span>
+    </div>
+
+    <div class="testimonial-slide">
+      <p class="testimonial-text">
+        The team demonstrated unmatched expertise in commercial construction.
+        Their ability to manage complex requirements while maintaining quality
+        standards truly sets them apart in the industry.
+      </p>
+      <h4 class="testimonial-name">Arun Prakash</h4>
+      <span class="testimonial-role">Director, Prime Infra Solutions</span>
+    </div>
+
+    <!-- ARROWS -->
+    <button class="arrow left" onclick="prevSlide()">&#10094;</button>
+    <button class="arrow right" onclick="nextSlide()">&#10095;</button>
+
+    <!-- DOTS -->
+    <div class="testimonial-dots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CTA SECTION -->
+
+<section class="cta-section">
+  <div class="cta-container">
+    <div class="cta-text">
+      <h2>Ready to start your next project?</h2>
+      <p>Get a free consultation and personalized quote from our experts.</p>
+    </div>
+
+    <div class="cta-action">
+      <a href="#" class="cta-btn">Request a Consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+ <footer class="footer-section">
+  <div class="footer-container">
+
+    <!-- BRAND -->
+    <div class="footer-brand">
+      <h3 class="logo">
+        <span style="margin-left: -205px;"><img src="Logo.png" alt="Logo"></span> Ayyavu Construction
+      </h3>
+      <p class="footer-text">
+        Leading the industry with high-quality architectural solutions and
+        sustainable building practices since 2003.
+      </p>
+
+      <div class="social-links">
+  <a href="#" class="social-icon" aria-label="Facebook">
+    <svg viewBox="0 0 24 24">
+      <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.6l-.4 3h-2.2v7A10 10 0 0 0 22 12z"/>
+    </svg>
+  </a>
+
+  <a href="#" class="social-icon" aria-label="Twitter">
+    <svg viewBox="0 0 24 24">
+      <path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 0 0 1.88-2.38 8.6 8.6 0 0 1-2.72 1.04A4.28 4.28 0 0 0 11.5 9.5a12.14 12.14 0 0 1-8.8-4.46 4.28 4.28 0 0 0 1.33 5.7A4.23 4.23 0 0 1 2 10.2v.05a4.28 4.28 0 0 0 3.44 4.2 4.3 4.3 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.97A8.6 8.6 0 0 1 2 19.5 12.13 12.13 0 0 0 8.29 21c7.55 0 11.68-6.26 11.68-11.68 0-.18 0-.36-.01-.54A8.36 8.36 0 0 0 22.46 6z"/>
+    </svg>
+  </a>
+
+  <a href="#" class="social-icon" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24">
+      <path d="M4.98 3.5a2.48 2.48 0 1 0 0 4.96 2.48 2.48 0 0 0 0-4.96zM3 21h4v-12H3v12zm7 0h4v-6.5c0-3.9 5-4.2 5 0V21h4v-7.7c0-7-8-6.7-9-3.3V9H10v12z"/>
+    </svg>
+  </a>
+</div>
+
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-column">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html" >Home</a></li>
+        <li><a href="about.html" >About Us</a></li>
+        <!-- <li><a href="projects.html">Projects</a></li> -->
+        <li><a href="contact.html" >Contact Us</a></li>
+        <li><a href="blog.html" >Blog</a></li>
+      </ul>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="footer-column">
+      <h4>Projects</h4>
+      <ul>
+        <li><a href="#">Completed Projects</a></li>
+        <li><a href="#">Ongoing Projects</a></li>
+        <li><a href="#">Upcoming Projects</a></li>
+      </ul>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="footer-column">
+      <h4>Contact Us</h4>
+      <p>📍 No-17, Vidhya Colony 5th cross, Thadagam rd<br />
+                      TVS Nagar, Coimbatore - 641025</p>
+      <p>📞<a href="tel:+91 93604 93616">+91 93604 93616</a></p>
+      <p>📞<a href="tel:+91 93604 93616">+91 93457 70330</a></p>
+      <p>✉️ <a href="mailto:ayyavu.ayyavupromoters@gmail.com">ayyavu.ayyavupromoters@gmail.com </a></p>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="footer-bottom">
+    <p>© 2026 Ayyavu Construction. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+        let currentIndex = 0;
+    const slides = document.querySelectorAll(".testimonial-slide");
+    const dots = document.querySelectorAll(".dot");
+    let autoSlide;
+
+    function updateSlides(index) {
+        slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+        dots[i].classList.toggle("active", i === index);
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlides(currentIndex);
+        resetAutoSlide();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlides(currentIndex);
+        resetAutoSlide();
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateSlides(currentIndex);
+        resetAutoSlide();
+    }
+
+    function startAutoSlide() {
+        autoSlide = setInterval(nextSlide, 5000);
+    }
+
+    function resetAutoSlide() {
+        clearInterval(autoSlide);
+        startAutoSlide();
+    }
+
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") nextSlide();
+        if (e.key === "ArrowLeft") prevSlide();
+    });
+
+    // Swipe support
+    let startX = 0;
+    document.querySelector(".testimonial-container").addEventListener("touchstart", e => {
+        startX = e.touches[0].clientX;
+    });
+
+    document.querySelector(".testimonial-container").addEventListener("touchend", e => {
+        let endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) nextSlide();
+        if (endX - startX > 50) prevSlide();
+    });
+
+    // Init
+    startAutoSlide();
+  </script>
+
+</body>
+</html>
