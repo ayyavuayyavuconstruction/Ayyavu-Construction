@@ -6,24 +6,20 @@ function Contact() {
   async function handleSubmit(e) {
   e.preventDefault()
 
-  const name = e.target[0].value
-  const email = e.target[1].value
-  const projectType = e.target[2].value
-  const subject = e.target[3].value
-  const message = e.target[4].value
+  const formData = new FormData(e.target)
 
   const { error } = await supabase
     .from('contacts')
     .insert([{
-      name,
-      email,
-      project_type: projectType,
-      subject,
-      message
+      name: formData.get('name'),
+      email: formData.get('email'),
+      project_type: formData.get('projectType'),
+      subject: formData.get('subject'),
+      message: formData.get('message')
     }])
 
   if (error) {
-    alert('Error sending message: ' + error.message)
+    alert('Error: ' + error.message)
     return
   }
 
@@ -94,18 +90,18 @@ function Contact() {
               <div className="form-row">
                 <div className="form-group">
                   <label>Full Name</label>
-                  <input type="text" placeholder="John Doe" required />
+                  <input type="text" name="name" placeholder="John Doe" required />
                 </div>
                 <div className="form-group">
                   <label>Email Address</label>
-                  <input type="email" placeholder="john@example.com" required />
+                  <input type="email" name="email" placeholder="john@example.com" required />
                 </div>
               </div>
 
               <div className="form-row">
                 <div className="form-group">
                   <label>Project Type</label>
-                  <select>
+                  <select name="projectType">
                     <option>Select a type</option>
                     <option>Residential</option>
                     <option>Commercial</option>
@@ -114,13 +110,13 @@ function Contact() {
                 </div>
                 <div className="form-group">
                   <label>Subject</label>
-                  <input type="text" placeholder="Project Inquiry" required />
+                  <input type="text" name="subject" placeholder="Project Inquiry" required />
                 </div>
               </div>
 
               <div className="form-group">
                 <label>Message</label>
-                <textarea placeholder="Tell us about your project requirements..." required></textarea>
+                <textarea name="message" placeholder="Tell us about your project requirements..." required></textarea>
               </div>
 
               <button type="submit" className="send-btn">Send Message →</button>
