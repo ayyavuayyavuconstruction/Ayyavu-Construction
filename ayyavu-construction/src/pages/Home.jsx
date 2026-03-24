@@ -60,7 +60,7 @@ function Home() {
       <section className="hero-wrapper">
         <div className="hero">
           <div className="hero-content">
-            <h1>Building Trust.<br />Shaping Tomorrow.</h1>
+            <h1>Creating Heavens<br />On Earth</h1>
             <p>Expert residential, commercial, and industrial construction services dedicated to quality, precision, and architectural excellence.</p>
             <div className="hero-buttons">
               <Link to="/projects"><button className="primary-btn">View Projects</button></Link>
