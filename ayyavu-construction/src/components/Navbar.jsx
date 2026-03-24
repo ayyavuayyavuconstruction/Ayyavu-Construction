@@ -11,7 +11,7 @@ function Navbar() {
       borderBottom: '1px solid #e5e7eb'
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <img src="../public/assets/images/Logo.png" alt="Logo" style={{ width: 28, height: 28 }} />
+        <img src="../public/assets/images/Logo.PNG" alt="Logo" style={{ width: 28, height: 28 }} />
         <b>Ayyavu Construction</b>
       </div>
 

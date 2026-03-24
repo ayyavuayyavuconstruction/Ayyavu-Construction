@@ -135,7 +135,7 @@ function EditProject() {
     <>
       <header>
         <div className="logo">
-          <img src="../public/assets/images/Logo.png" alt="Logo" />
+          <img src="../public/assets/images/Logo.PNG" alt="Logo" />
           <b>Ayyavu Construction</b>
         </div>
         <button className="quote-btn" onClick={() => navigate('/admin/dashboard')}>

@@ -21,7 +21,7 @@ function Login() {
       {/* HEADER WITH BACK BUTTON */}
       <header>
         <div className="logo">
-          <img src="../public/assets/images/Logo.png" alt="Logo" />
+          <img src="../public/assets/images/Logo.PNG" alt="Logo" />
           <b>Ayyavu Construction</b>
         </div>
 
