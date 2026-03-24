@@ -37,6 +37,10 @@ function Dashboard() {
             <h3>Edit Projects</h3>
             <button onClick={() => navigate('/admin/edit-project')}>Edit</button>
           </div>
+          <div className="dash-card">
+            <h3>View Enquiries</h3>
+            <button onClick={() => navigate('/admin/enquiries')}>View</button>
+          </div>
         </div>
       </div>
 

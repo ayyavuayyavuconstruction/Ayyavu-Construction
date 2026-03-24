@@ -8,6 +8,7 @@ import Login from './pages/admin/Login.jsx'
 import Dashboard from './pages/admin/Dashboard.jsx'
 import AddProject from './pages/admin/AddProject.jsx'
 import EditProject from './pages/admin/EditProject.jsx'
+import Enquiries from './pages/admin/Enquiries.jsx'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/add-project" element={<AddProject />} />
         <Route path="/admin/edit-project" element={<EditProject />} />
+        <Route path="/admin/enquiries" element={<Enquiries />} />
       </Routes>
     </BrowserRouter>
   )

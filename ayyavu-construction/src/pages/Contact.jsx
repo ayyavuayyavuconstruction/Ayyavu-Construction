@@ -1,12 +1,35 @@
 import Navbar from '../components/Navbar.jsx'
 import Footer from '../components/Footer.jsx'
+import { supabase } from '../supabase.js'
 
 function Contact() {
-  function handleSubmit(e) {
-    e.preventDefault()
-    alert('Message sent successfully!')
-    e.target.reset()
+  async function handleSubmit(e) {
+  e.preventDefault()
+
+  const name = e.target[0].value
+  const email = e.target[1].value
+  const projectType = e.target[2].value
+  const subject = e.target[3].value
+  const message = e.target[4].value
+
+  const { error } = await supabase
+    .from('contacts')
+    .insert([{
+      name,
+      email,
+      project_type: projectType,
+      subject,
+      message
+    }])
+
+  if (error) {
+    alert('Error sending message: ' + error.message)
+    return
   }
+
+  alert('Message sent successfully!')
+  e.target.reset()
+}
 
   return (
     <>
