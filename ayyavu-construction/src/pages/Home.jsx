@@ -411,12 +411,12 @@ function Home() {
         </div>
       )}
 
-      {enquiryProject && (
+      {/* {enquiryProject && (
       <EnquiryPopup
         project={enquiryProject}
         onClose={() => setEnquiryProject(null)}
         />
-      )}        
+      )}         */}
       <Footer />
     </>
   )
