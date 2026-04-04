@@ -24,6 +24,7 @@ function App() {
         <Route path="/admin/add-project" element={<AddProject />} />
         <Route path="/admin/edit-project" element={<EditProject />} />
         <Route path="/admin/enquiries" element={<Enquiries />} />
+        <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>
   )
