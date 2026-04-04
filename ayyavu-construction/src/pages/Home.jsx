@@ -370,36 +370,79 @@ function Home() {
               {/* ENQUIRY FORM */}
               {!showEnquiryForm ? (
                 <button
-                className="primary-btn"
-                style={{ width: '100%', marginTop: '20px' }}
-                onClick={() => setEnquiryProject(selectedProject)}
-              >
-                Enquire Now
-              </button>
+                  className="primary-btn"
+                  style={{ width: '100%', marginTop: '20px' }}
+                  onClick={() => setEnquiryProject(selectedProject)}
+                >
+                  Enquire Now
+                </button>
               ) : (
                 <form onSubmit={handleEnquiry} style={{ marginTop: '20px' }}>
                   <p style={{ color: '#60a5fa', fontWeight: '600', marginBottom: '12px', fontSize: '14px' }}>
                     Enquiry for: {selectedProject.title}
                   </p>
                   <div style={{ display: 'grid', gap: '10px' }}>
-                    <input type="text" name="name" placeholder="Your Name" required
-                      style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '14px', fontFamily: 'inherit' }}
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      required
+                      style={{
+                        padding: '10px 14px', borderRadius: '8px',
+                        border: '1px solid #334155', background: '#1e293b',
+                        color: '#fff', fontSize: '14px', fontFamily: 'inherit'
+                      }}
                     />
-                    <input type="email" name="email" placeholder="Your Email" required
-                      style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '14px', fontFamily: 'inherit' }}
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Your Email"
+                      required
+                      style={{
+                        padding: '10px 14px', borderRadius: '8px',
+                        border: '1px solid #334155', background: '#1e293b',
+                        color: '#fff', fontSize: '14px', fontFamily: 'inherit'
+                      }}
                     />
-                    <input type="tel" name="phone" placeholder="Your Phone Number"
-                      style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '14px', fontFamily: 'inherit' }}
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Your Phone Number"
+                      style={{
+                        padding: '10px 14px', borderRadius: '8px',
+                        border: '1px solid #334155', background: '#1e293b',
+                        color: '#fff', fontSize: '14px', fontFamily: 'inherit'
+                      }}
                     />
-                    <textarea name="message" placeholder="Your message..." rows={3}
-                      style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '14px', fontFamily: 'inherit', resize: 'none' }}
+                    <textarea
+                      name="message"
+                      placeholder="Your message..."
+                      rows={3}
+                      style={{
+                        padding: '10px 14px', borderRadius: '8px',
+                        border: '1px solid #334155', background: '#1e293b',
+                        color: '#fff', fontSize: '14px', fontFamily: 'inherit',
+                        resize: 'none'
+                      }}
                     />
                     <div style={{ display: 'flex', gap: '10px' }}>
-                      <button type="submit" className="primary-btn" style={{ flex: 1 }} disabled={enquiryLoading}>
+                      <button
+                        type="submit"
+                        className="primary-btn"
+                        style={{ flex: 1 }}
+                        disabled={enquiryLoading}
+                      >
                         {enquiryLoading ? 'Sending...' : 'Send Enquiry'}
                       </button>
-                      <button type="button" onClick={() => setShowEnquiryForm(false)}
-                        style={{ padding: '10px 16px', borderRadius: '8px', border: '1px solid #334155', background: 'transparent', color: '#94a3b8', cursor: 'pointer', fontSize: '14px' }}>
+                      <button
+                        type="button"
+                        onClick={() => setShowEnquiryForm(false)}
+                        style={{
+                          padding: '10px 16px', borderRadius: '8px',
+                          border: '1px solid #334155', background: 'transparent',
+                          color: '#94a3b8', cursor: 'pointer', fontSize: '14px'
+                        }}
+                      >
                         Cancel
                       </button>
                     </div>
