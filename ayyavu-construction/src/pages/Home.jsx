@@ -12,6 +12,7 @@ function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [showEnquiryForm, setShowEnquiryForm] = useState(false)
   const [enquiryLoading, setEnquiryLoading] = useState(false)
+  const [enquiryProject, setEnquiryProject] = useState(null)
 
   const testimonials = [
     {
@@ -411,12 +412,12 @@ function Home() {
         </div>
       )}
 
-      {/* {enquiryProject && (
+      {enquiryProject && (
       <EnquiryPopup
         project={enquiryProject}
         onClose={() => setEnquiryProject(null)}
         />
-      )}         */}
+      )}        
       <Footer />
     </>
   )

@@ -13,6 +13,7 @@ function Projects() {
   const navigate = useNavigate()
   const [showEnquiryForm, setShowEnquiryForm] = useState(false)
   const [enquiryLoading, setEnquiryLoading] = useState(false)
+  const [enquiryProject, setEnquiryProject] = useState(null)
 
   useEffect(() => {
     fetchProjects('All')
