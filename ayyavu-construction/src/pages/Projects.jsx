@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import Footer from '../components/Footer.jsx'
 import { supabase } from '../supabase.js'
+import EnquiryPopup from '../components/EnquiryPopup.jsx'
 
 function Projects() {
   const [projects, setProjects] = useState([])
@@ -247,7 +248,7 @@ function Projects() {
                 <button
                   className="primary-btn"
                   style={{ width: '100%', marginTop: '20px' }}
-                  onClick={() => setShowEnquiryForm(true)}
+                  onClick={() => setEnquiryProject(selectedProject)}
                 >
                   Enquire Now
                 </button>
@@ -329,7 +330,12 @@ function Projects() {
           </div>
         </div>
       )}
-
+      {enquiryProject && (
+      <EnquiryPopup
+        project={enquiryProject}
+        onClose={() => setEnquiryProject(null)}
+      />
+      )}
       <Footer />
     </>
   )

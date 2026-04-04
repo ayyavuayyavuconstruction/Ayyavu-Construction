@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar.jsx'
 import Footer from '../components/Footer.jsx'
 import { supabase } from '../supabase.js'
+import EnquiryPopup from '../components/EnquiryPopup.jsx'
 
 function Home() {
   const [projects, setProjects] = useState([])
@@ -410,6 +411,12 @@ function Home() {
         </div>
       )}
 
+      {enquiryProject && (
+      <EnquiryPopup
+        project={enquiryProject}
+        onClose={() => setEnquiryProject(null)}
+        />
+      )}        
       <Footer />
     </>
   )
