@@ -370,12 +370,12 @@ function Home() {
               {/* ENQUIRY FORM */}
               {!showEnquiryForm ? (
                 <button
-                  className="primary-btn"
-                  style={{ width: '100%', marginTop: '20px' }}
-                  onClick={() => setShowEnquiryForm(true)}
-                >
-                  Enquire Now
-                </button>
+                className="primary-btn"
+                style={{ width: '100%', marginTop: '20px' }}
+                onClick={() => setEnquiryProject(selectedProject)}
+              >
+                Enquire Now
+              </button>
               ) : (
                 <form onSubmit={handleEnquiry} style={{ marginTop: '20px' }}>
                   <p style={{ color: '#60a5fa', fontWeight: '600', marginBottom: '12px', fontSize: '14px' }}>
