@@ -9,6 +9,8 @@ function Home() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [selectedProject, setSelectedProject] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [showEnquiryForm, setShowEnquiryForm] = useState(false)
+  const [enquiryLoading, setEnquiryLoading] = useState(false)
 
   const testimonials = [
     {
@@ -34,16 +36,57 @@ function Home() {
       setCurrentSlide(prev => (prev + 1) % testimonials.length)
     }, 5000)
     return () => clearInterval(timer)
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function fetchProjects() {
     const { data, error } = await supabase
       .from('projects')
-      .select('*, project_images(image_url)')
+      .select('*, project_images(id, image_url)')
       .order('id', { ascending: false })
       .limit(3)
-
     if (!error) setProjects(data)
+  }
+
+  function openModal(project) {
+    setSelectedProject(project)
+    setCurrentImageIndex(0)
+    setShowEnquiryForm(false)
+  }
+
+  function closeModal() {
+    setSelectedProject(null)
+    setCurrentImageIndex(0)
+    setShowEnquiryForm(false)
+  }
+
+  async function handleEnquiry(e) {
+    e.preventDefault()
+    setEnquiryLoading(true)
+
+    const formData = new FormData(e.target)
+
+    const { error } = await supabase
+      .from('contacts')
+      .insert([{
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        message: formData.get('message'),
+        project_id: selectedProject.id,
+        project_title: selectedProject.title,
+        subject: `Enquiry for ${selectedProject.title}`
+      }])
+
+    if (error) {
+      alert('Error: ' + error.message)
+      setEnquiryLoading(false)
+      return
+    }
+
+    alert('Enquiry sent successfully!')
+    setShowEnquiryForm(false)
+    setEnquiryLoading(false)
+    closeModal()
   }
 
   function getStatusColor(status) {
@@ -60,7 +103,7 @@ function Home() {
       <section className="hero-wrapper">
         <div className="hero">
           <div className="hero-content">
-            <h1>Creating Heavens<br />On Earth</h1>
+            <h1>Building Trust.<br />Shaping Tomorrow.</h1>
             <p>Expert residential, commercial, and industrial construction services dedicated to quality, precision, and architectural excellence.</p>
             <div className="hero-buttons">
               <Link to="/projects"><button className="primary-btn">View Projects</button></Link>
@@ -124,47 +167,47 @@ function Home() {
       </section>
 
       {/* PROJECTS */}
-<section className="project-section">
-  <div className="project-header">
-    <span className="project-label">PROJECT PIPELINE</span>
-    <h2 className="project-title">Our Project Journey</h2>
-    <p className="project-subtitle">
-      A transparent look into our active portfolio, showcasing the lifecycle of our commitment to building excellence.
-    </p>
-  </div>
-  <div className="project-cards">
-    {projects.length === 0 ? (
-      <p style={{ color: '#6b7280', gridColumn: '1/-1', textAlign: 'center', padding: '40px' }}>
-        Loading projects...
-      </p>
-    ) : (
-      projects.map(project => (
-        <div className="project-card" key={project.id}>
-          <div
-            className="project-image"
-            style={{
-              backgroundImage: `url(${project.project_images?.[0]?.image_url || ''})`,
-              backgroundColor: '#e5e7eb'
-            }}
-          />
-          <span className="project-status" style={{ color: getStatusColor(project.status) }}>
-            ● {project.status?.toUpperCase()}
-          </span>
-          <h3>{project.title}</h3>
-          <p>{project.description}</p>
-          <p style={{ fontSize: '13px', color: '#9ca3af' }}>📍 {project.location}</p>
-          <p style={{ fontSize: '13px', color: '#9ca3af', marginBottom: '18px' }}>💰 {project.price}</p>
-          <button
-            className="view-details-btn"
-            onClick={() => setSelectedProject(project)}
-          >
-            View Details →
-          </button>
+      <section className="project-section">
+        <div className="project-header">
+          <span className="project-label">PROJECT PIPELINE</span>
+          <h2 className="project-title">Our Project Journey</h2>
+          <p className="project-subtitle">
+            A transparent look into our active portfolio, showcasing the lifecycle of our commitment to building excellence.
+          </p>
         </div>
-      ))
-    )}
-  </div>
-</section>
+        <div className="project-cards">
+          {projects.length === 0 ? (
+            <p style={{ color: '#6b7280', gridColumn: '1/-1', textAlign: 'center', padding: '40px' }}>
+              Loading projects...
+            </p>
+          ) : (
+            projects.map(project => (
+              <div className="project-card" key={project.id}>
+                <div
+                  className="project-image"
+                  style={{
+                    backgroundImage: `url(${project.project_images?.[0]?.image_url || ''})`,
+                    backgroundColor: '#e5e7eb'
+                  }}
+                />
+                <span className="project-status" style={{ color: getStatusColor(project.status) }}>
+                  ● {project.status?.toUpperCase()}
+                </span>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <p style={{ fontSize: '13px', color: '#9ca3af' }}>📍 {project.location}</p>
+                <p style={{ fontSize: '13px', color: '#9ca3af', marginBottom: '18px' }}>💰 {project.price}</p>
+                <button
+                  className="view-details-btn"
+                  onClick={() => openModal(project)}
+                >
+                  View Details →
+                </button>
+              </div>
+            ))
+          )}
+        </div>
+      </section>
 
       {/* CONTACT MINI */}
       <section className="contact-section">
@@ -177,18 +220,30 @@ function Home() {
               Have a vision in mind? Reach out today for a complimentary consultation.
               Our experts are ready to discuss your next masterpiece.
             </p>
-            <form className="contact-form" onSubmit={e => e.preventDefault()}>
+            <form className="contact-form" onSubmit={async (e) => {
+              e.preventDefault()
+              const formData = new FormData(e.target)
+              const { error } = await supabase.from('contacts').insert([{
+                name: formData.get('name'),
+                email: formData.get('email'),
+                message: formData.get('message'),
+                subject: 'General Enquiry'
+              }])
+              if (error) { alert('Error: ' + error.message); return }
+              alert('Message sent successfully!')
+              e.target.reset()
+            }}>
               <div className="form-group">
                 <label>Name</label>
-                <input type="text" placeholder="John Doe" required />
+                <input type="text" name="name" placeholder="John Doe" required />
               </div>
               <div className="form-group">
                 <label>Email</label>
-                <input type="email" placeholder="john@example.com" required />
+                <input type="email" name="email" placeholder="john@example.com" required />
               </div>
               <div className="form-group">
                 <label>Message</label>
-                <textarea placeholder="Briefly describe your project goals..." required />
+                <textarea name="message" placeholder="Briefly describe your project goals..." required></textarea>
               </div>
               <button type="submit" className="contact-btn">Send Message</button>
             </form>
@@ -206,9 +261,9 @@ function Home() {
           <Link to="/projects" className="portfolio-link">View All Projects</Link>
         </div>
         <div className="portfolio-grid">
-          <div className="portfolio-card" style={{ backgroundImage: 'url(/assets/images/image1.jpg)' }} />
-          <div className="portfolio-card" style={{ backgroundImage: 'url(/assets/images/image2.jpg)' }} />
-          <div className="portfolio-card" style={{ backgroundImage: 'url(/assets/images/image3.jpg)' }} />
+          <div className="portfolio-card" style={{ backgroundImage: 'url(/assets/images/portfolio-1.jpg)' }} />
+          <div className="portfolio-card" style={{ backgroundImage: 'url(/assets/images/portfolio-2.jpg)' }} />
+          <div className="portfolio-card" style={{ backgroundImage: 'url(/assets/images/portfolio-3.jpg)' }} />
         </div>
       </section>
 
@@ -248,13 +303,12 @@ function Home() {
         </div>
       </section>
 
-      
-      {/* MODAL */}
+      {/* MODAL WITH ENQUIRY FORM */}
       {selectedProject && (
-        <div className="modal-overlay" onClick={() => { setSelectedProject(null); setCurrentImageIndex(0) }}>
+        <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-box" onClick={e => e.stopPropagation()}>
 
-            <button className="modal-close" onClick={() => { setSelectedProject(null); setCurrentImageIndex(0) }}>✖</button>
+            <button className="modal-close" onClick={closeModal}>✖</button>
 
             {/* IMAGE SLIDER */}
             <div className="modal-slider">
@@ -277,15 +331,18 @@ function Home() {
                       </button>
                       <div className="slider-dots">
                         {selectedProject.project_images.map((_, i) => (
-                          <span key={i} className={`slider-dot ${i === currentImageIndex ? 'active' : ''}`}
-                            onClick={e => { e.stopPropagation(); setCurrentImageIndex(i) }} />
+                          <span key={i}
+                            className={`slider-dot ${i === currentImageIndex ? 'active' : ''}`}
+                            onClick={e => { e.stopPropagation(); setCurrentImageIndex(i) }}
+                          />
                         ))}
                       </div>
                       <div className="modal-thumbs">
                         {selectedProject.project_images.map((img, i) => (
                           <img key={i} src={img.image_url} alt={`thumb-${i}`}
                             className={`modal-thumb ${i === currentImageIndex ? 'active-thumb' : ''}`}
-                            onClick={e => { e.stopPropagation(); setCurrentImageIndex(i) }} />
+                            onClick={e => { e.stopPropagation(); setCurrentImageIndex(i) }}
+                          />
                         ))}
                       </div>
                     </>
@@ -296,6 +353,7 @@ function Home() {
               )}
             </div>
 
+            {/* DETAILS + ENQUIRY */}
             <div className="modal-content">
               <h2>{selectedProject.title}</h2>
               <span className="modal-status" style={{ background: getStatusColor(selectedProject.status) }}>
@@ -306,19 +364,52 @@ function Home() {
               <p style={{ marginTop: '12px', color: '#94a3b8', lineHeight: '1.7' }}>
                 {selectedProject.description}
               </p>
-              {selectedProject.details && (
-                <p style={{ marginTop: '8px', color: '#94a3b8', lineHeight: '1.7' }}>
-                  {selectedProject.details}
-                </p>
+
+              {/* ENQUIRY FORM */}
+              {!showEnquiryForm ? (
+                <button
+                  className="primary-btn"
+                  style={{ width: '100%', marginTop: '20px' }}
+                  onClick={() => setShowEnquiryForm(true)}
+                >
+                  Enquire Now
+                </button>
+              ) : (
+                <form onSubmit={handleEnquiry} style={{ marginTop: '20px' }}>
+                  <p style={{ color: '#60a5fa', fontWeight: '600', marginBottom: '12px', fontSize: '14px' }}>
+                    Enquiry for: {selectedProject.title}
+                  </p>
+                  <div style={{ display: 'grid', gap: '10px' }}>
+                    <input type="text" name="name" placeholder="Your Name" required
+                      style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '14px', fontFamily: 'inherit' }}
+                    />
+                    <input type="email" name="email" placeholder="Your Email" required
+                      style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '14px', fontFamily: 'inherit' }}
+                    />
+                    <input type="tel" name="phone" placeholder="Your Phone Number"
+                      style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '14px', fontFamily: 'inherit' }}
+                    />
+                    <textarea name="message" placeholder="Your message..." rows={3}
+                      style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid #334155', background: '#1e293b', color: '#fff', fontSize: '14px', fontFamily: 'inherit', resize: 'none' }}
+                    />
+                    <div style={{ display: 'flex', gap: '10px' }}>
+                      <button type="submit" className="primary-btn" style={{ flex: 1 }} disabled={enquiryLoading}>
+                        {enquiryLoading ? 'Sending...' : 'Send Enquiry'}
+                      </button>
+                      <button type="button" onClick={() => setShowEnquiryForm(false)}
+                        style={{ padding: '10px 16px', borderRadius: '8px', border: '1px solid #334155', background: 'transparent', color: '#94a3b8', cursor: 'pointer', fontSize: '14px' }}>
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </form>
               )}
-              <button className="primary-btn" style={{ width: '100%', marginTop: '20px' }}
-                onClick={() => { setSelectedProject(null); window.location.href = '/contact' }}>
-                Enquire Now
-              </button>
             </div>
+
           </div>
         </div>
       )}
+
       <Footer />
     </>
   )
